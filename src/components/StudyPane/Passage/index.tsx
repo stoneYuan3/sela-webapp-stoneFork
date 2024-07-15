@@ -31,7 +31,7 @@ const WordBlock = ({
   showVerseNum: boolean;
 }) => {
 
-  const { ctxZoomLevel, ctxIsHebrew, ctxSelectedWords, ctxSetSelectedWords, ctxSetNumSelectedWords, ctxColorAction, ctxColorFill, ctxBorderColor, ctxTextColor, ctxUniformWidth, ctxIndentWord } = useContext(FormatContext)
+  const { ctxZoomLevel, ctxIsHebrew, ctxSelectedWords, ctxSetSelectedWords, ctxSetNumSelectedWords, ctxColorAction, ctxColorFill, ctxBorderColor, ctxTextColor, ctxUniformWidth, ctxIndentWord, ctxHistory, ctxSetHistory } = useContext(FormatContext)
 
   const [colorFillLocal, setColorFillLocal] = useState(hebWord.colorFill || DEFAULT_COLOR_FILL);
   const [borderColorLocal, setBorderColorLocal] = useState(hebWord.borderColor || DEFAULT_BORDER_COLOR);
@@ -54,6 +54,8 @@ const WordBlock = ({
         (borderColorLocal != ctxBorderColor) && setBorderColorLocal(ctxBorderColor);
         (textColorLocal != ctxTextColor) && setTextColorLocal(ctxTextColor);
       }
+      // const histArray = [[hebWord.id,colorFillLocal,borderColorLocal,textColorLocal], ...ctxHistory];
+      // ctxSetHistory(histArray);
     }
   }
 

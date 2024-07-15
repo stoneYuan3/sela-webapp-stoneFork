@@ -29,7 +29,12 @@ export const FormatContext = createContext({
   ctxIndentWord: [] as number[],
   ctxSetIndentWord: (arg: number[]) => {},
   ctxContent: {} as PassageData,
-  ctxInViewMode: false
+  ctxInViewMode: false,
+
+  ctxHistory: [] as (string | number)[][],
+  ctxSetHistory: (arg: (string | number) [][]) => {},
+  ctxCurrentHist: {} as number,
+  ctxSetCurrentHist: (arg: number) => {}
 });
 
 const StudyPane = ({ 
@@ -53,6 +58,9 @@ const StudyPane = ({
     const [uniformWidth, setUniformWidth] = useState(false);
     const [indentWord, setIndentWord] = useState<number[]>([]);
 
+    const [history, setHistory] = useState<(string | number)[][]>([]);
+    const [currentHist, setCurrentHist] = useState<number>(0)
+
     const formatContextValue = {
       ctxStudyId: study.id,
       ctxZoomLevel: zoomLevel,
@@ -69,7 +77,12 @@ const StudyPane = ({
       ctxIndentWord: indentWord,
       ctxSetIndentWord: setIndentWord,
       ctxContent: content,
-      ctxInViewMode: inViewMode
+      ctxInViewMode: inViewMode,
+
+      ctxHistory: history,
+      ctxSetHistory: setHistory,
+      ctxCurrentHist: currentHist,
+      ctxSetCurrentHist: setCurrentHist,
     }
 
     const passageDivStyle = {

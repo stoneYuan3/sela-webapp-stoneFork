@@ -26,11 +26,26 @@ const ToolTip = ({ text }: { text: string }) => {
 
 export const UndoBtn = () => {
 
+  const { ctxHistory, ctxCurrentHist, ctxSetCurrentHist } = useContext(FormatContext);
+
+  const handleClick = () => {
+    console.log("Undo Clicked");
+    if (ctxHistory.length == 0) {
+      console.log("empty history");
+      // return;
+    }
+    else {
+      const newCurrent = ctxCurrentHist+1
+      ctxSetCurrentHist(newCurrent);
+      console.log(ctxHistory[ctxCurrentHist]);
+    }
+  }
+
   return (
     <div className="flex flex-col group relative inline-block items-center justify-center px-2 xsm:flex-row">
       <button
         className="hover:text-primary"
-        onClick={() => console.log("Undo Clicked")} >
+        onClick={handleClick} >
         <LuUndo2 fontSize="1.5em" />
       </button>
       <ToolTip text="Undo" />
